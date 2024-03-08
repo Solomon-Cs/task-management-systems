@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { Router, Routes, Route } from "react-router-dom";
+import { Button } from "@mantine/core";
+import { useState } from "react";
+
+import "./App.css";
+import Dashboard from "./components/Admin/Dashbord/Dashboard";
+import Home from "./components/Commen/Home/Home";
+import Tasks from "./components/Admin/Tasks/Tasks";
+import DevloperTask from "./components/Developer/DevloperTask/DevloperTask";
+import Login from "./components/Commen/Login/Login";
+
 
 function App() {
+  const [token, setToken] = useState('');
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/DevTasks" element={<DevloperTask />} />
+        <Route path="/AdminDashboard" element={<Dashboard token={token}  />} />
+        <Route path="/Tasks" element={<Tasks />} />
+        <Route path="/Login" element={<Login setToken={setToken} />} />
+        <Route path="/task-management-system" exact element={<Home />} />
+
+      </Routes>
     </div>
   );
 }
